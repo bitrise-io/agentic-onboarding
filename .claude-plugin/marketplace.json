@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "agentic-onboarding",
+  "description": "Bitrise prospect onboarding skills, served from the bitrise-io/agentic-onboarding repo",
+  "owner": {
+    "name": "Bitrise"
+  },
+  "plugins": [
+    {
+      "name": "bitrise-agentic-onboarding",
+      "source": "./plugins/bitrise-agentic-onboarding",
+      "description": "Walks a Bitrise prospect from no account to a public install page using the agentic-onboarding branch of the Bitrise MCP. One skill per stage (signup, CI first build, Release Management) plus an orchestrator.",
+      "category": "developer-tools",
+      "keywords": ["bitrise", "onboarding", "mcp", "ci", "release-management", "mobile-cicd", "agentic"]
+    }
+  ]
+}
