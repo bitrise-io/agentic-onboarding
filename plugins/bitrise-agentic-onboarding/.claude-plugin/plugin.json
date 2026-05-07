@@ -7,5 +7,14 @@
   },
   "homepage": "https://github.com/bitrise-io/agentic-onboarding",
   "repository": "https://github.com/bitrise-io/agentic-onboarding.git",
-  "keywords": ["bitrise", "onboarding", "mcp", "ci", "release-management", "mobile-cicd", "agentic"]
+  "keywords": ["bitrise", "onboarding", "mcp", "ci", "release-management", "mobile-cicd", "agentic"],
+  "mcpServers": {
+    "bitrise": {
+      "command": "go",
+      "args": [
+        "run",
+        "github.com/bitrise-io/bitrise-mcp/v2@agentic-onboarding"
+      ]
+    }
+  }
 }

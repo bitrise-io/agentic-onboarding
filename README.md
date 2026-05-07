@@ -43,8 +43,8 @@ Four skills:
 | `bitrise-release-management` | "share my build", "get a public install link" | Connected app → signed-URL upload → enable public install page → surface URL |
 | `bitrise-onboard-end-to-end` | "onboard me to Bitrise from scratch", "give me the full demo" | Orchestrator that runs all three with shared state |
 
-Plus an `.mcp.json` inside the plugin that auto-wires the Bitrise MCP from
-the `agentic-onboarding` branch via `go run`.
+Plus an `mcpServers` entry in the plugin manifest that auto-wires the
+Bitrise MCP from the `agentic-onboarding` branch via `go run`.
 
 ## Requirements
 
@@ -97,14 +97,12 @@ helpers only exist on that branch. `main` (and the hosted
 call — `register` isn't a registered tool there.
 
 Once the branch lands on `main` and ships to the hosted endpoint, this
-plugin's `.mcp.json` can be flipped to:
+plugin's `mcpServers` block in `plugin.json` can be flipped to:
 
 ```json
-{
-  "mcpServers": {
-    "bitrise": {
-      "url": "https://mcp.bitrise.io"
-    }
+"mcpServers": {
+  "bitrise": {
+    "url": "https://mcp.bitrise.io"
   }
 }
 ```
@@ -133,7 +131,6 @@ and skip the local `go run` entirely.
 ├── plugins/
 │   └── bitrise-agentic-onboarding/     The plugin itself
 │       ├── .claude-plugin/plugin.json    Plugin manifest
-│       ├── .mcp.json                     Auto-wires the Bitrise MCP
 │       └── skills/
 │           ├── bitrise-signup/
 │           ├── bitrise-ci-onboarding/
