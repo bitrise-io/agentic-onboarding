@@ -1,0 +1,3 @@
+# GitHub Pages config — serve static HTML as-is, no Jekyll theme or processing needed.
+include:
+  - index.html

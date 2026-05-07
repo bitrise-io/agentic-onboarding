@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bitrise Agentic Onboarding</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Design tokens ── */
+    :root {
+      --purple-primary: #760fc3;
+      --purple-primary-hover: #510c85;
+      --purple-dark: #351d48;
+      --purple-mid: #653e7e;
+      --purple-deeper: #500e82;
+      --purple-text: #2b0e3f;
+      --purple-light-bg: #f3e8fd;
+      --purple-accent: #9d4edd;
+      --purple-accent-hover: #760fc3;
+      --purple-pale: #ddb4fe;
+      --text-heading: #2b0e3f;
+      --text-body: #49404f;
+      --text-secondary: #6b6071;
+      --text-white: #ffffff;
+      --bg-white: #ffffff;
+      --bg-light: #f8f8f8;
+      --border: #ececec;
+      --shadow-card: 0 4px 16px rgba(0,0,0,.10);
+      --radius-card: 16px;
+      --radius-btn: 4px;
+    }
+
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: var(--text-body);
+      background: var(--bg-white);
+    }
+    a { color: var(--purple-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code, pre { font-family: "Source Code Pro", monospace; }
+
+    /* ── Container ── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ════════════════════════════
+       NAVBAR
+    ════════════════════════════ */
+    .navbar {
+      background: var(--purple-dark);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    .navbar .container {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .navbar-brand img { display: block; height: 22px; width: auto; }
+    .navbar-divider {
+      width: 1px;
+      height: 18px;
+      background: rgba(255,255,255,0.25);
+    }
+    .navbar-tagline {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+    .btn-nav {
+      background: var(--purple-accent);
+      color: var(--text-white);
+      font-family: inherit;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      padding: 0.625rem 1.5rem;
+      border-radius: var(--radius-btn);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-nav:hover { background: var(--purple-accent-hover); text-decoration: none; color: #fff; }
+
+    /* ════════════════════════════
+       HERO
+    ════════════════════════════ */
+    .hero {
+      background: linear-gradient(160deg, #351d48 0%, #653e7e 100%);
+      color: var(--text-white);
+      padding: 6rem 0 5rem;
+    }
+    .hero-inner { max-width: 680px; }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--purple-pale);
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.25rem, 5vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .hero-divider {
+      width: 80px;
+      height: 5px;
+      background: var(--purple-pale);
+      border-radius: 100px;
+      margin: 1.25rem 0;
+    }
+    .hero p {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,.8);
+      margin-bottom: 2.5rem;
+      max-width: 560px;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .btn-primary {
+      background: var(--purple-primary);
+      color: #fff;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 1rem 2rem;
+      border-radius: var(--radius-btn);
+      border: none;
+      text-decoration: none;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--purple-primary-hover); text-decoration: none; color: #fff; }
+    .btn-ghost-white {
+      background: transparent;
+      color: #fff;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: var(--radius-btn);
+      border: 2px solid rgba(255,255,255,.4);
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+    .btn-ghost-white:hover { border-color: #fff; text-decoration: none; color: #fff; }
+
+    /* ════════════════════════════
+       SECTION HELPERS
+    ════════════════════════════ */
+    section { padding: 5rem 0; }
+    .section-alt { background: var(--bg-light); }
+    .section-dark {
+      background: var(--purple-dark);
+      color: #fff;
+    }
+    .section-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--purple-primary);
+      margin-bottom: 0.6rem;
+    }
+    .section-dark .section-eyebrow { color: var(--purple-pale); }
+    .section-title {
+      font-size: clamp(1.625rem, 3.5vw, 2.25rem);
+      font-weight: 800;
+      color: var(--text-heading);
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+    .section-dark .section-title { color: #fff; }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 540px;
+      line-height: 1.7;
+    }
+    .section-dark .section-sub { color: rgba(255,255,255,.7); }
+    .section-header { margin-bottom: 3rem; }
+
+    /* ════════════════════════════
+       JOURNEY CARDS
+    ════════════════════════════ */
+    .journey-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.5rem;
+    }
+    .step-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .step-card:hover {
+      box-shadow: 0 8px 32px rgba(118,15,195,.15);
+      transform: translateY(-2px);
+    }
+    .step-card-top {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      background: var(--purple-primary);
+      color: #fff;
+      font-size: 0.9375rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-card-top h3 {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      line-height: 1.3;
+    }
+    .skill-chip {
+      display: inline-block;
+      font-family: "Source Code Pro", monospace;
+      font-size: 0.75rem;
+      background: var(--purple-light-bg);
+      color: var(--purple-primary);
+      border-radius: 4px;
+      padding: 0.15rem 0.5rem;
+    }
+    .step-card > p {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .trigger-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 0.4rem;
+    }
+    .trigger-block {
+      font-family: "Source Code Pro", monospace;
+      font-size: 0.8125rem;
+      background: #f8f8f8;
+      border-left: 3px solid var(--purple-primary);
+      border-radius: 0 6px 6px 0;
+      padding: 0.65rem 1rem;
+      color: var(--text-heading);
+      line-height: 1.6;
+    }
+
+    /* details / step list */
+    details {
+      border-top: 1px solid var(--border);
+      padding-top: 0.9rem;
+    }
+    details summary {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--purple-primary);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      user-select: none;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::before {
+      content: "▶";
+      font-size: 0.55rem;
+      transition: transform 0.15s;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    details ol {
+      margin-top: 0.85rem;
+      padding-left: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    details ol li {
+      font-size: 0.875rem;
+      color: var(--text-body);
+      line-height: 1.6;
+    }
+    details ol li code {
+      font-family: "Source Code Pro", monospace;
+      font-size: 0.8rem;
+      background: #ececec;
+      border-radius: 3px;
+      padding: 0.05rem 0.35rem;
+    }
+
+    /* ════════════════════════════
+       ORCHESTRATOR CALLOUT
+    ════════════════════════════ */
+    .orchestrator-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      padding: 2rem;
+      display: grid;
+      gap: 1.25rem;
+      margin-top: 1.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .orchestrator-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(to right, var(--purple-primary), var(--purple-accent));
+    }
+    .orchestrator-card h3 {
+      font-size: 1.1875rem;
+      font-weight: 800;
+      color: var(--text-heading);
+    }
+    .orchestrator-card > p {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .pill-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .pill {
+      font-family: "Source Code Pro", monospace;
+      font-size: 0.8rem;
+      background: var(--purple-light-bg);
+      color: var(--purple-primary);
+      border: 1px solid rgba(118,15,195,.2);
+      border-radius: 100px;
+      padding: 0.3rem 0.85rem;
+    }
+    .time-note {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+    .time-note strong { color: var(--purple-primary); }
+
+    /* ════════════════════════════
+       INSTALL SECTION
+    ════════════════════════════ */
+    .install-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
+    }
+    .install-step {
+      display: flex;
+      gap: 1.25rem;
+    }
+    .install-step-num {
+      flex-shrink: 0;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      background: var(--purple-primary);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.9375rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.1rem;
+    }
+    .install-step-body h4 {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 0.6rem;
+    }
+    .install-step-body p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+    pre.cmd {
+      font-family: "Source Code Pro", monospace;
+      font-size: 0.9rem;
+      background: var(--purple-dark);
+      color: #e8e0f0;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      line-height: 1.7;
+      white-space: pre;
+    }
+    pre.cmd .cmt { color: #8b7a9e; }
+    pre.cmd .key { color: #d97757; }
+
+    details.extras {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      background: var(--bg-white);
+    }
+    details.extras summary { font-size: 0.9rem; }
+
+    /* ════════════════════════════
+       REQUIREMENTS
+    ════════════════════════════ */
+    .req-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.25rem;
+    }
+    .req-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      padding: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .req-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 10px;
+      background: var(--purple-light-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .req-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 0.25rem;
+    }
+    .req-card p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+    .req-card p code {
+      font-family: "Source Code Pro", monospace;
+      font-size: 0.8rem;
+      background: #ececec;
+      border-radius: 3px;
+      padding: 0.05rem 0.3rem;
+    }
+
+    /* ════════════════════════════
+       FOOTER
+    ════════════════════════════ */
+    footer {
+      background: var(--purple-dark);
+      color: rgba(255,255,255,.6);
+      padding: 3rem 0;
+      font-size: 0.9rem;
+    }
+    footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-brand {
+      font-size: 1.125rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
+    }
+    .footer-brand em { font-style: normal; font-size: 0.8125rem; font-weight: 500; color: rgba(255,255,255,0.45); }
+    .footer-note {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,.45);
+      max-width: 480px;
+      line-height: 1.6;
+    }
+    .footer-note code {
+      font-family: "Source Code Pro", monospace;
+      font-size: 0.75rem;
+      background: rgba(255,255,255,.1);
+      border-radius: 3px;
+      padding: 0.05rem 0.35rem;
+    }
+    footer a { color: rgba(255,255,255,.7); }
+    footer a:hover { color: #fff; text-decoration: none; }
+    .btn-footer {
+      background: var(--purple-accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-btn);
+      text-decoration: none;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .btn-footer:hover { background: var(--purple-accent-hover); color: #fff; }
+
+    /* ════════════════════════════
+       RESPONSIVE
+    ════════════════════════════ */
+    @media (max-width: 640px) {
+      section { padding: 3rem 0; }
+      .hero { padding: 3.5rem 0 3rem; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navbar ── -->
+<nav class="navbar">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="logo.svg" alt="Bitrise" />
+      <span class="navbar-divider"></span>
+      <span class="navbar-tagline">Agentic Onboarding</span>
+    </a>
+    <a class="btn-nav" href="#install">Get started</a>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <span class="hero-eyebrow">Claude Code Plugin · Proof of Concept</span>
+      <h1>AI-assisted onboarding — zero to green build in one conversation</h1>
+      <div class="hero-divider"></div>
+      <p>
+        A Claude Code plugin that walks a brand-new Bitrise prospect from account creation
+        to a shareable public install page, entirely through natural conversation.
+        No browser detours. No credential setup upfront.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#install">Install the plugin</a>
+        <a class="btn-ghost-white" href="#journey">See how it works ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Journey ── -->
+<section id="journey">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">How it works</div>
+      <h2 class="section-title">Three skills, one seamless journey</h2>
+      <p class="section-sub">
+        Each skill is a Claude Code slash command that drives a stage of the onboarding.
+        Run them individually or let the orchestrator chain all three automatically.
+      </p>
+    </div>
+
+    <div class="journey-grid">
+
+      <!-- Stage 1 -->
+      <div class="step-card">
+        <div class="step-card-top">
+          <div class="step-num">1</div>
+          <div>
+            <h3>Create your Bitrise account</h3>
+            <span class="skill-chip">bitrise-signup</span>
+          </div>
+        </div>
+        <p>
+          Claude registers a new account via anonymous MCP tools, handles OTP verification,
+          and wires your fresh PAT into the MCP config — no browser login required.
+        </p>
+        <div>
+          <div class="trigger-label">Say to Claude</div>
+          <div class="trigger-block">"Sign me up to Bitrise"<br>"Create my Bitrise account"<br>"I want to try Bitrise"</div>
+        </div>
+        <details>
+          <summary>Step details</summary>
+          <ol>
+            <li>Claude asks which email to register.</li>
+            <li>Calls <code>register</code> — a 6-digit OTP is emailed to you.</li>
+            <li>You paste the OTP; Claude calls <code>verify_registration</code>.</li>
+            <li>Runs <code>claude mcp remove bitrise</code> then re-adds it with <code>-e BITRISE_TOKEN=…</code> — the PAT is never echoed in chat.</li>
+            <li>After you restart Claude, calls <code>me</code> + <code>list_workspaces</code> to confirm everything works.</li>
+          </ol>
+        </details>
+      </div>
+
+      <!-- Stage 2 -->
+      <div class="step-card">
+        <div class="step-card-top">
+          <div class="step-num">2</div>
+          <div>
+            <h3>Register your app &amp; run your first build</h3>
+            <span class="skill-chip">bitrise-ci-onboarding</span>
+          </div>
+        </div>
+        <p>
+          Claude registers your repo, generates and uploads an SSH deploy key, picks the
+          right stack, uploads signing credentials, triggers the first build, and reads the
+          logs on failure.
+        </p>
+        <div>
+          <div class="trigger-label">Say to Claude</div>
+          <div class="trigger-block">"Set up my project on Bitrise"<br>"Run my first Bitrise build"<br>"Get my iOS/Android app building on Bitrise"</div>
+        </div>
+        <details>
+          <summary>Step details</summary>
+          <ol>
+            <li>Claude collects workspace, platform (iOS / Android), repo URL, and git provider.</li>
+            <li>Calls <code>register_app</code> to create the project.</li>
+            <li>For private repos: generates an ed25519 key and calls <code>register_ssh_key</code> to auto-add it as a GitHub/GitLab deploy key.</li>
+            <li>Calls <code>list_available_stacks</code>, picks the right stack, calls <code>finish_bitrise_app</code>.</li>
+            <li>Calls <code>register_webhook</code> so git pushes auto-trigger builds.</li>
+            <li>Uploads signing files via <code>upload_build_certificate</code> + <code>upload_provisioning_profile</code> (iOS) or <code>upload_android_keystore_file</code> (Android).</li>
+            <li>Calls <code>trigger_bitrise_build</code> and shares the build URL immediately.</li>
+            <li>Polls <code>get_build</code> every 15–30 s; calls <code>get_build_log</code> on failure to diagnose.</li>
+          </ol>
+        </details>
+      </div>
+
+      <!-- Stage 3 -->
+      <div class="step-card">
+        <div class="step-card-top">
+          <div class="step-num">3</div>
+          <div>
+            <h3>Share your build with testers</h3>
+            <span class="skill-chip">bitrise-release-management</span>
+          </div>
+        </div>
+        <p>
+          Claude creates a Release Management connected app, uploads the IPA / APK / AAB
+          via presigned URL, enables the public install page, and hands you back a shareable link.
+        </p>
+        <div>
+          <div class="trigger-label">Say to Claude</div>
+          <div class="trigger-block">"Share my build"<br>"Get me a public install link"<br>"Set up Release Management"</div>
+        </div>
+        <details>
+          <summary>Step details</summary>
+          <ol>
+            <li>Claude confirms workspace, platform, bundle ID / package name, and artifact source.</li>
+            <li>Calls <code>create_connected_app</code> with <code>manual_connection: true</code>.</li>
+            <li>If the artifact is a CI build slug: fetches it via <code>list_artifacts</code> → <code>get_artifact</code> → downloads with <code>curl</code>.</li>
+            <li>Generates a client-side UUID and calls <code>generate_installable_artifact_upload_url</code> with <code>with_public_page: true</code>.</li>
+            <li>Uploads via <code>curl -X PUT</code> using the presigned URL and headers.</li>
+            <li>Polls <code>get_installable_artifact_upload_and_processing_status</code> until ready.</li>
+            <li>Calls <code>set_installable_artifact_public_install_page</code> as a defensive confirmation.</li>
+            <li>Calls <code>list_installable_artifacts</code> and surfaces the public install page URL.</li>
+          </ol>
+        </details>
+      </div>
+
+    </div><!-- /journey-grid -->
+
+    <!-- Orchestrator callout -->
+    <div class="orchestrator-card">
+      <h3>Run the full journey in one shot</h3>
+      <p>
+        The <span class="skill-chip">bitrise-onboard-end-to-end</span> orchestrator chains all three skills
+        with shared state — one conversation, one context, ~15–30 minutes from zero to public install link.
+      </p>
+      <div>
+        <div class="trigger-label" style="margin-bottom:.5rem;">Trigger phrases</div>
+        <div class="pill-group">
+          <span class="pill">"Onboard me to Bitrise from scratch"</span>
+          <span class="pill">"Give me the full Bitrise demo"</span>
+          <span class="pill">"Go from zero to a shareable install link"</span>
+        </div>
+      </div>
+      <p class="time-note">Estimated total time: <strong>15–30 minutes</strong>, dominated by the first build and OTP email latency.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Install ── -->
+<section class="section-alt" id="install">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Installation</div>
+      <h2 class="section-title">Two commands. No credentials needed upfront.</h2>
+      <p class="section-sub">
+        Requires <strong>Claude Code CLI</strong> and <strong>Go&nbsp;≥&nbsp;1.25</strong>.
+        The plugin auto-wires the Bitrise MCP — no separate server setup needed.
+      </p>
+    </div>
+
+    <div class="install-steps">
+
+      <div class="install-step">
+        <div class="install-step-num">1</div>
+        <div class="install-step-body">
+          <h4>Add the marketplace catalog</h4>
+          <pre class="cmd"><span class="key">claude</span> plugin marketplace add bitrise-io/agentic-onboarding</pre>
+          <p>Registers the Bitrise agentic-onboarding plugin catalog from GitHub into your local Claude Code installation.</p>
+        </div>
+      </div>
+
+      <div class="install-step">
+        <div class="install-step-num">2</div>
+        <div class="install-step-body">
+          <h4>Install the plugin</h4>
+          <pre class="cmd"><span class="key">claude</span> plugin install bitrise-agentic-onboarding@agentic-onboarding</pre>
+          <p>Installs the plugin and auto-wires the Bitrise MCP via <code style="background:#ececec;border-radius:3px;padding:.05rem .3rem;font-size:.85rem;">go run</code> on the <code style="background:#ececec;border-radius:3px;padding:.05rem .3rem;font-size:.85rem;">agentic-onboarding</code> branch. First launch compiles the MCP binary — allow 30–90 s of silence.</p>
+        </div>
+      </div>
+
+      <div class="install-step">
+        <div class="install-step-num">3</div>
+        <div class="install-step-body">
+          <h4>Launch Claude and start</h4>
+          <pre class="cmd"><span class="key">claude</span>
+
+<span class="cmt"># Then say:</span>
+Onboard me to Bitrise from scratch.</pre>
+          <p>The orchestrator skill takes over — it will ask for your email, then your app details. Nothing else to configure in advance.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top: 2.5rem;">
+      <details class="extras">
+        <summary>Update &amp; uninstall</summary>
+        <pre class="cmd" style="margin-top:1rem;border-radius:8px;"><span class="cmt"># Update to the latest version</span>
+<span class="key">claude</span> plugin marketplace update agentic-onboarding
+
+<span class="cmt"># Uninstall</span>
+<span class="key">claude</span> plugin uninstall bitrise-agentic-onboarding@agentic-onboarding
+<span class="key">claude</span> plugin marketplace remove agentic-onboarding</pre>
+      </details>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Requirements ── -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Requirements</div>
+      <h2 class="section-title">What you need before you start</h2>
+    </div>
+    <div class="req-grid">
+      <div class="req-card">
+        <div class="req-icon">🐹</div>
+        <div>
+          <h4>Go ≥ 1.25</h4>
+          <p>The MCP server is a Go binary compiled on first launch. Check with <code>go version</code> or install from <a href="https://go.dev/dl/" target="_blank" rel="noopener">go.dev/dl</a>.</p>
+        </div>
+      </div>
+      <div class="req-card">
+        <div class="req-icon">🖥️</div>
+        <div>
+          <h4>Claude Code CLI</h4>
+          <p>Requires the <code>claude</code> CLI. The Cowork desktop app's local plugin install isn't supported yet — use the CLI for now.</p>
+        </div>
+      </div>
+      <div class="req-card">
+        <div class="req-icon">🌐</div>
+        <div>
+          <h4>Internet on first run</h4>
+          <p>Go pulls the <code>agentic-onboarding</code> branch from <code>proxy.golang.org</code> on first launch. Subsequent starts use the local module cache.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="container">
+    <div>
+      <div class="footer-brand">
+        <img src="logo.svg" alt="Bitrise" style="height:20px;width:auto;display:block;margin-bottom:.4rem;" />
+        <em>Agentic Onboarding</em>
+      </div>
+      <p class="footer-note">
+        Proof of concept. Signup, code-signing, and provider-OAuth tools require the
+        <code>agentic-onboarding</code> branch of
+        <a href="https://github.com/bitrise-io/bitrise-mcp" target="_blank" rel="noopener">bitrise-io/bitrise-mcp</a>,
+        not yet deployed to the hosted MCP endpoint.
+      </p>
+    </div>
+    <a class="btn-footer" href="https://github.com/bitrise-io/agentic-onboarding" target="_blank" rel="noopener">View on GitHub →</a>
+  </div>
+</footer>
+
+</body>
+</html>
