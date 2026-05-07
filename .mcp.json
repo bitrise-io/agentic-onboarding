@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "bitrise": {
+      "command": "go",
+      "args": [
+        "run",
+        "github.com/bitrise-io/bitrise-mcp/v2@agentic-onboarding"
+      ]
+    }
+  }
+}

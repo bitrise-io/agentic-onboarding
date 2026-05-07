@@ -1,0 +1,9 @@
+{
+  "name": "bitrise-onboarding-poc",
+  "version": "0.1.0",
+  "description": "Walks a Bitrise prospect from no account to a public install page using the agentic-onboarding branch of the Bitrise MCP. Includes one skill per stage (signup, CI first build, Release Management) and an orchestrator that runs all three.",
+  "author": {
+    "name": "Bitrise"
+  },
+  "keywords": ["bitrise", "onboarding", "mcp", "ci", "release-management", "mobile-cicd"]
+}

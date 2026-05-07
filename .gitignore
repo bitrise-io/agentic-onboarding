@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Built plugin archive (regenerable from source)
+*.plugin
+
+# Local-only test/scratch
+/scratch/
+/tmp/
